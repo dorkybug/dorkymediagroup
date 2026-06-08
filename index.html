@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dorky Media Group | Gaming YouTube Network</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#090f1d;
+    --card:#111827;
+    --border:#1f2937;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --accent:#e11d48;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+.container{
+    width:min(1200px,90%);
+    margin:auto;
+}
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(9,15,29,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 0;
+}
+
+.logo{
+    font-size:1.4rem;
+    font-weight:800;
+}
+
+.logo span{
+    color:var(--accent);
+}
+
+.nav-links{
+    display:flex;
+    gap:24px;
+}
+
+.nav-links a{
+    color:var(--muted);
+    text-decoration:none;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    text-align:center;
+    position:relative;
+}
+
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    radial-gradient(circle at top center,
+    rgba(225,29,72,.18),
+    transparent 55%);
+}
+
+.hero-content{
+    width:100%;
+    position:relative;
+    z-index:1;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 16px;
+    border-radius:999px;
+    border:1px solid rgba(225,29,72,.3);
+    background:rgba(225,29,72,.1);
+    color:#fb7185;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(3rem,8vw,6rem);
+    line-height:1;
+    margin-bottom:24px;
+}
+
+.hero p{
+    max-width:750px;
+    margin:auto;
+    color:var(--muted);
+    font-size:1.15rem;
+    line-height:1.8;
+}
+
+.buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    text-decoration:none;
+    padding:14px 26px;
+    border-radius:12px;
+    font-weight:600;
+}
+
+.btn-primary{
+    background:var(--accent);
+    color:white;
+}
+
+.btn-secondary{
+    border:1px solid var(--border);
+    color:white;
+}
+
+section{
+    padding:100px 0;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.7rem;
+    margin-bottom:15px;
+}
+
+.section-subtitle{
+    text-align:center;
+    color:var(--muted);
+    max-width:700px;
+    margin:0 auto 50px;
+}
+
+.about{
+    max-width:850px;
+    margin:auto;
+    text-align:center;
+    color:var(--muted);
+    line-height:1.9;
+    font-size:1.05rem;
+}
+
+.channels{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.banner{
+    height:200px;
+    background:
+    linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.6)),
+    url('https://i.ytimg.com/vi/GIQl3wzuMww/maxresdefault.jpg');
+    background-size:cover;
+    background-position:center;
+}
+
+.placeholder-banner{
+    height:200px;
+    background:linear-gradient(135deg,#1f2937,#374151);
+}
+
+.card-content{
+    padding:24px;
+}
+
+.card-content h3{
+    margin-bottom:12px;
+}
+
+.card-content p{
+    color:var(--muted);
+    margin-bottom:20px;
+    line-height:1.7;
+}
+
+.channel-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:var(--accent);
+    color:white;
+    padding:10px 16px;
+    border-radius:10px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.stat{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:35px;
+    text-align:center;
+}
+
+.stat h2{
+    font-size:2.7rem;
+    color:var(--accent);
+    margin-bottom:10px;
+}
+
+.stat p{
+    color:var(--muted);
+}
+
+.cta{
+    text-align:center;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:60px 30px;
+}
+
+.cta h2{
+    font-size:2.3rem;
+    margin-bottom:15px;
+}
+
+.cta p{
+    color:var(--muted);
+    max-width:650px;
+    margin:0 auto 25px;
+    line-height:1.8;
+}
+
+footer{
+    border-top:1px solid var(--border);
+    padding:40px 0;
+    text-align:center;
+    color:var(--muted);
+}
+
+@media(max-width:768px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero h1{
+        font-size:3rem;
+    }
+
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+    <div class="container nav-inner">
+
+    <div class="logo">
+        <span>Dorky Media</span> Group
+    </div>
+
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#brands">Brands</a>
+        <a href="#stats">Stats</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="container hero-content">
+
+    <div class="badge">
+        Gaming Media Network
+    </div>
+
+    <h1>
+        Building The Next Generation<br>
+        Of Gaming Channels
+    </h1>
+
+    <p>
+        We create, operate, and grow gaming-focused YouTube brands.
+        From military combat games to future gaming communities,
+        our mission is to build engaging content and passionate
+        audiences around the games we love.
+    </p>
+
+    <div class="buttons">
+        <a href="#brands" class="btn btn-primary">
+            Explore Our Brands
+        </a>
+
+        <a href="#about" class="btn btn-secondary">
+            Learn More
+        </a>
+    </div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<div class="container">
+
+    <h2 class="section-title">
+        About Us
+    </h2>
+
+    <p class="about">
+        Dorky Media Group is a gaming-focused content network dedicated
+        to building high-quality YouTube brands. We produce gameplay,
+        tutorials, updates, guides, reviews, and community-driven content
+        for players around the world. Our first brand focuses on War Thunder,
+        and we plan to expand into additional gaming communities and genres
+        as the network grows.
+    </p>
+
+</div>
+
+</section>
+
+<section id="brands">
+
+<div class="container">
+
+    <h2 class="section-title">
+        Our Brands
+    </h2>
+
+    <p class="section-subtitle">
+        Current and upcoming gaming channels within our network.
+    </p>
+
+    <div class="channels">
+
+        <div class="card">
+
+            <div class="banner"></div>
+
+            <div class="card-content">
+
+                <h3>Réaumur</h3>
+
+                <p>
+                    Dedicated to War Thunder gameplay, tank battles,
+                    aircraft showcases, update coverage, vehicle reviews,
+                    tips, guides, historical content, and community highlights.
+                </p>
+
+                <a href="https://www.youtube.com/@R%C3%A9aumurWT"
+                   target="_blank"
+                   class="channel-btn">
+                    Watch on YouTube
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="placeholder-banner"></div>
+
+            <div class="card-content">
+
+                <h3>Upcoming Gaming Brand</h3>
+
+                <p>
+                    A new gaming-focused YouTube channel currently in
+                    development and planned for future launch.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <div class="placeholder-banner"></div>
+
+            <div class="card-content">
+
+                <h3>Future Expansion</h3>
+
+                <p>
+                    More gaming communities, genres, and content verticals
+                    will join our network as we continue to grow.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section id="stats">
+
+<div class="container">
+
+    <h2 class="section-title">
+        Network Statistics
+    </h2>
+
+    <div class="stats">
+
+        <div class="stat">
+            <h2>1</h2>
+            <p>Gaming Brand</p>
+        </div>
+
+        <div class="stat">
+            <h2>1+</h2>
+            <p>Games Covered</p>
+        </div>
+
+        <div class="stat">
+            <h2>7+</h2>
+            <p>Videos Published</p>
+        </div>
+
+        <div class="stat">
+            <h2>6K+</h2>
+            <p>Total Views</p>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<div class="container">
+
+    <div class="cta">
+
+        <h2>
+            Join Our Journey
+        </h2>
+
+        <p>
+            We're building a network of gaming communities, one channel
+            at a time. Follow our brands and stay tuned as we expand
+            into new games, new content, and new audiences.
+        </p>
+
+        <a href="mailto:contact@dorkymediagroup.com"
+           class="btn btn-primary">
+            Contact Us
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+<footer>
+    © 2026 Dorky Media Group • Building Gaming Communities
+</footer>
+
+</body>
+</html>
